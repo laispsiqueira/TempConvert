@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.12.1 on win32)" generated="2024-10-28T15:53:01.425280" rpa="false" schemaversion="5">
+<suite id="s1" name="Robot env" source="C:\ProjetosVS\Robot_env">
+<suite id="s1-s1" name="RF XML" source="C:\ProjetosVS\Robot_env\RF_XML">
+<suite id="s1-s1-s1" name="Test" source="C:\ProjetosVS\Robot_env\RF_XML\test">
+<suite id="s1-s1-s1-s1" name="tempConverter" source="C:\ProjetosVS\Robot_env\RF_XML\test\tempConverter.robot">
+<test id="s1-s1-s1-s1-t1" name="Cenário: Converter Temperatura de Celsius para Fahrenheit" line="5">
+<kw name="Post TempConverter" owner="tempConvert">
+<msg time="2024-10-28T15:53:01.797783" level="TRACE">Arguments: [ ${celsius_value}='100' | ${fahrenheit_value}=None | ${expected_status}='200' ]</msg>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-10-28T15:53:01.798783" level="TRACE">Arguments: [ 'Content-Type=text/xml; charset=utf-8' ]</msg>
+<msg time="2024-10-28T15:53:01.798783" level="TRACE">Return: {'Content-Type': 'text/xml; charset=utf-8'}</msg>
+<msg time="2024-10-28T15:53:01.798783" level="INFO">${headers} = {'Content-Type': 'text/xml; charset=utf-8'}</msg>
+<var>${headers}</var>
+<arg>Content-Type=text/xml; charset=utf-8</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-10-28T15:53:01.798783" elapsed="0.000000"/>
+</kw>
+<if>
+<branch type="IF" condition="${celsius_value}">
+<kw name="Build Xml TempConvert" owner="build_xml_tempconvert">
+<msg time="2024-10-28T15:53:01.798783" level="TRACE">Arguments: [ celsius_value='100' ]</msg>
+<msg time="2024-10-28T15:53:01.798783" level="TRACE">Return: '&lt;?xml version="1.0" encoding="utf-8"?&gt;\n    &lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;\n        &lt;soap:Body&gt;\n            &lt;CelsiusToFahrenheit xmlns="https://www.w3schools.com/xml/"&gt;\n                             &lt;Celsius&gt;100&lt;/Celsius&gt;\n                         &lt;/CelsiusToFahrenheit&gt;\n        &lt;/soap:Body&gt;\n    &lt;/soap:Envelope&gt;'</msg>
+<msg time="2024-10-28T15:53:01.798783" level="INFO">${data} = &lt;?xml version="1.0" encoding="utf-8"?&gt;
+    &lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+        &lt;soap:Body&gt;
+            &lt;CelsiusToFahrenheit xmlns="https://www.w3schools.com/...</msg>
+<var>${data}</var>
+<arg>celsius_value=${celsius_value}</arg>
+<status status="PASS" start="2024-10-28T15:53:01.798783" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-10-28T15:53:01.798783" elapsed="0.000000"/>
+</branch>
+<branch type="ELSE IF" condition="${fahrenheit_value}">
+<kw name="Build Xml TempConvert" owner="build_xml_tempconvert">
+<var>${data}</var>
+<arg>fahrenheit_value=${fahrenheit_value}</arg>
+<status status="NOT RUN" start="2024-10-28T15:53:01.798783" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-10-28T15:53:01.798783" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2024-10-28T15:53:01.798783" elapsed="0.000000"/>
+</if>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2024-10-28T15:53:01.799783" level="TRACE">Arguments: [ url='https://www.w3schools.com/xml/tempconvert.asmx' | headers={'Content-Type': 'text/xml; charset=utf-8'} | data='&lt;?xml version="1.0" encoding="utf-8"?&gt;\n    &lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;\n        &lt;soap:Body&gt;\n            &lt;CelsiusToFahrenheit xmlns="https://www.w3schools.com/xml/"&gt;\n                             &lt;Celsius&gt;100&lt;/Celsius&gt;\n                         &lt;/CelsiusToFahrenheit&gt;\n        &lt;/soap:Body&gt;\n    &lt;/soap:Envelope&gt;' | expected_status='200' ]</msg>
+<msg time="2024-10-28T15:53:01.800782" level="DEBUG">Starting new HTTPS connection (1): www.w3schools.com:443</msg>
+<msg time="2024-10-28T15:53:02.519852" level="DEBUG">https://www.w3schools.com:443 "POST /xml/tempconvert.asmx HTTP/11" 200 425</msg>
+<msg time="2024-10-28T15:53:02.519852" level="INFO">POST Request : url=https://www.w3schools.com/xml/tempconvert.asmx 
+ path_url=/xml/tempconvert.asmx 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'text/xml; charset=utf-8', 'Content-Length': '348'} 
+ body=&lt;?xml version="1.0" encoding="utf-8"?&gt;
+    &lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+        &lt;soap:Body&gt;
+            &lt;CelsiusToFahrenheit xmlns="https://www.w3schools.com/xml/"&gt;
+                             &lt;Celsius&gt;100&lt;/Celsius&gt;
+                         &lt;/CelsiusToFahrenheit&gt;
+        &lt;/soap:Body&gt;
+    &lt;/soap:Envelope&gt; 
+ </msg>
+<msg time="2024-10-28T15:53:02.519852" level="INFO">POST Response : url=https://www.w3schools.com/xml/tempconvert.asmx 
+ status=200, reason=OK 
+ headers={'Content-Encoding': 'gzip', 'Cache-Control': 'private, max-age=0,public', 'Content-Security-Policy': "frame-ancestors 'self' https://mycourses.w3schools.com https://pathfinder.w3schools.com;", 'Content-Type': 'text/xml; charset=utf-8', 'Date': 'Mon, 28 Oct 2024 18:53:02 GMT', 'Server': 'Microsoft-IIS/10.0', 'Vary': 'Accept-Encoding', 'X-AspNet-Version': '4.0.30319', 'X-Content-Security-Policy': "frame-ancestors 'self' https://mycourses.w3schools.com https://pathfinder.w3schools.com;", 'X-Powered-By': 'ASP.NET', 'Content-Length': '425'} 
+ body=&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;&lt;soap:Body&gt;&lt;CelsiusToFahrenheitResponse xmlns="https://www.w3schools.com/xml/"&gt;&lt;CelsiusToFahrenheitResult&gt;212&lt;/CelsiusToFahrenheitResult&gt;&lt;/CelsiusToFahrenheitResponse&gt;&lt;/soap:Body&gt;&lt;/soap:Envelope&gt; 
+ </msg>
+<msg time="2024-10-28T15:53:02.519852" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg time="2024-10-28T15:53:02.519852" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>url=${W3SCHOOLS_URL_BASE}/${W3SCHOOLS_URI_TEMPCONVERTER}</arg>
+<arg>headers=${headers}</arg>
+<arg>data=${data}</arg>
+<arg>expected_status=${expected_status}</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2024-10-28T15:53:01.798783" elapsed="0.721069"/>
+</kw>
+<kw name="Set Test Variable" owner="BuiltIn">
+<msg time="2024-10-28T15:53:02.519852" level="TRACE">Arguments: [ '${response}' ]</msg>
+<msg time="2024-10-28T15:53:02.519852" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<msg time="2024-10-28T15:53:02.519852" level="TRACE">Return: None</msg>
+<arg>${response}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="PASS" start="2024-10-28T15:53:02.519852" elapsed="0.000000"/>
+</kw>
+<msg time="2024-10-28T15:53:02.519852" level="TRACE">Return: None</msg>
+<arg>celsius_value=100</arg>
+<status status="PASS" start="2024-10-28T15:53:01.797783" elapsed="0.722069"/>
+</kw>
+<kw name="Assert TempConverter" owner="tempConvert">
+<msg time="2024-10-28T15:53:02.519852" level="TRACE">Arguments: [ ${celsius_result}=None | ${fahrenheit_result}='212' ]</msg>
+<kw name="Parse Xml" owner="XML">
+<msg time="2024-10-28T15:53:02.519852" level="TRACE">Arguments: [ b'&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;&lt;soap:Body&gt;&lt;CelsiusToFahrenheitResponse xmlns="https://www.w3schools.com/xml/"&gt;&lt;CelsiusToFahrenheitResult&gt;212&lt;/CelsiusToFahrenheitResult&gt;&lt;/CelsiusToFahrenheitResponse&gt;&lt;/soap:Body&gt;&lt;/soap:Envelope&gt;' ]</msg>
+<msg time="2024-10-28T15:53:02.519852" level="TRACE">Return: &lt;Element 'Envelope' at 0x00000266C6C8D2B0&gt;</msg>
+<msg time="2024-10-28T15:53:02.519852" level="INFO">${root} = &lt;Element 'Envelope' at 0x00000266C6C8D2B0&gt;</msg>
+<var>${root}</var>
+<arg>${response.content}</arg>
+<doc>Parses the given XML file or string into an element structure.</doc>
+<status status="PASS" start="2024-10-28T15:53:02.519852" elapsed="0.000000"/>
+</kw>
+<if>
+<branch type="IF" condition="${celsius_result}">
+<kw name="Element Text Should Be" owner="XML">
+<arg>${root}</arg>
+<arg>${celsius_result}</arg>
+<arg>xpath=.//FahrenheitToCelsiusResult</arg>
+<doc>Verifies that the text of the specified element is ``expected``.</doc>
+<status status="NOT RUN" start="2024-10-28T15:53:02.519852" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-10-28T15:53:02.519852" elapsed="0.000000"/>
+</branch>
+<branch type="ELSE IF" condition="${fahrenheit_result}">
+<kw name="Element Text Should Be" owner="XML">
+<msg time="2024-10-28T15:53:02.519852" level="TRACE">Arguments: [ &lt;Element 'Envelope' at 0x00000266C6C8D2B0&gt; | '212' | xpath='.//CelsiusToFahrenheitResult' ]</msg>
+<msg time="2024-10-28T15:53:02.519852" level="TRACE">Return: None</msg>
+<arg>${root}</arg>
+<arg>${fahrenheit_result}</arg>
+<arg>xpath=.//CelsiusToFahrenheitResult</arg>
+<doc>Verifies that the text of the specified element is ``expected``.</doc>
+<status status="PASS" start="2024-10-28T15:53:02.519852" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-10-28T15:53:02.519852" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2024-10-28T15:53:02.519852" elapsed="0.000000"/>
+</if>
+<msg time="2024-10-28T15:53:02.519852" level="TRACE">Return: None</msg>
+<arg>fahrenheit_result=212</arg>
+<status status="PASS" start="2024-10-28T15:53:02.519852" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-10-28T15:53:01.796784" elapsed="0.723068"/>
+</test>
+<test id="s1-s1-s1-s1-t2" name="Cenário: Converter Temperatura de Fahrenheit para Celsius" line="13">
+<kw name="Post TempConverter" owner="tempConvert">
+<msg time="2024-10-28T15:53:02.519852" level="TRACE">Arguments: [ ${celsius_value}=None | ${fahrenheit_value}='212' | ${expected_status}='200' ]</msg>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-10-28T15:53:02.519852" level="TRACE">Arguments: [ 'Content-Type=text/xml; charset=utf-8' ]</msg>
+<msg time="2024-10-28T15:53:02.519852" level="TRACE">Return: {'Content-Type': 'text/xml; charset=utf-8'}</msg>
+<msg time="2024-10-28T15:53:02.519852" level="INFO">${headers} = {'Content-Type': 'text/xml; charset=utf-8'}</msg>
+<var>${headers}</var>
+<arg>Content-Type=text/xml; charset=utf-8</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-10-28T15:53:02.519852" elapsed="0.000000"/>
+</kw>
+<if>
+<branch type="IF" condition="${celsius_value}">
+<kw name="Build Xml TempConvert" owner="build_xml_tempconvert">
+<var>${data}</var>
+<arg>celsius_value=${celsius_value}</arg>
+<status status="NOT RUN" start="2024-10-28T15:53:02.519852" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-10-28T15:53:02.519852" elapsed="0.000000"/>
+</branch>
+<branch type="ELSE IF" condition="${fahrenheit_value}">
+<kw name="Build Xml TempConvert" owner="build_xml_tempconvert">
+<msg time="2024-10-28T15:53:02.519852" level="TRACE">Arguments: [ fahrenheit_value='212' ]</msg>
+<msg time="2024-10-28T15:53:02.519852" level="TRACE">Return: '&lt;?xml version="1.0" encoding="utf-8"?&gt;\n    &lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;\n        &lt;soap:Body&gt;\n            &lt;FahrenheitToCelsius xmlns="https://www.w3schools.com/xml/"&gt;\n                             &lt;Fahrenheit&gt;212&lt;/Fahrenheit&gt;\n                         &lt;/FahrenheitToCelsius&gt;\n        &lt;/soap:Body&gt;\n    &lt;/soap:Envelope&gt;'</msg>
+<msg time="2024-10-28T15:53:02.519852" level="INFO">${data} = &lt;?xml version="1.0" encoding="utf-8"?&gt;
+    &lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+        &lt;soap:Body&gt;
+            &lt;FahrenheitToCelsius xmlns="https://www.w3schools.com/...</msg>
+<var>${data}</var>
+<arg>fahrenheit_value=${fahrenheit_value}</arg>
+<status status="PASS" start="2024-10-28T15:53:02.519852" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-10-28T15:53:02.519852" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2024-10-28T15:53:02.519852" elapsed="0.000000"/>
+</if>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2024-10-28T15:53:02.519852" level="TRACE">Arguments: [ url='https://www.w3schools.com/xml/tempconvert.asmx' | headers={'Content-Type': 'text/xml; charset=utf-8'} | data='&lt;?xml version="1.0" encoding="utf-8"?&gt;\n    &lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;\n        &lt;soap:Body&gt;\n            &lt;FahrenheitToCelsius xmlns="https://www.w3schools.com/xml/"&gt;\n                             &lt;Fahrenheit&gt;212&lt;/Fahrenheit&gt;\n                         &lt;/FahrenheitToCelsius&gt;\n        &lt;/soap:Body&gt;\n    &lt;/soap:Envelope&gt;' | expected_status='200' ]</msg>
+<msg time="2024-10-28T15:53:02.519852" level="DEBUG">Starting new HTTPS connection (1): www.w3schools.com:443</msg>
+<msg time="2024-10-28T15:53:03.183998" level="DEBUG">https://www.w3schools.com:443 "POST /xml/tempconvert.asmx HTTP/11" 200 425</msg>
+<msg time="2024-10-28T15:53:03.185026" level="INFO">POST Request : url=https://www.w3schools.com/xml/tempconvert.asmx 
+ path_url=/xml/tempconvert.asmx 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'text/xml; charset=utf-8', 'Content-Length': '354'} 
+ body=&lt;?xml version="1.0" encoding="utf-8"?&gt;
+    &lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+        &lt;soap:Body&gt;
+            &lt;FahrenheitToCelsius xmlns="https://www.w3schools.com/xml/"&gt;
+                             &lt;Fahrenheit&gt;212&lt;/Fahrenheit&gt;
+                         &lt;/FahrenheitToCelsius&gt;
+        &lt;/soap:Body&gt;
+    &lt;/soap:Envelope&gt; 
+ </msg>
+<msg time="2024-10-28T15:53:03.185026" level="INFO">POST Response : url=https://www.w3schools.com/xml/tempconvert.asmx 
+ status=200, reason=OK 
+ headers={'Content-Encoding': 'gzip', 'Cache-Control': 'private, max-age=0,public', 'Content-Security-Policy': "frame-ancestors 'self' https://mycourses.w3schools.com https://pathfinder.w3schools.com;", 'Content-Type': 'text/xml; charset=utf-8', 'Date': 'Mon, 28 Oct 2024 18:53:03 GMT', 'Server': 'Microsoft-IIS/10.0', 'Vary': 'Accept-Encoding', 'X-AspNet-Version': '4.0.30319', 'X-Content-Security-Policy': "frame-ancestors 'self' https://mycourses.w3schools.com https://pathfinder.w3schools.com;", 'X-Powered-By': 'ASP.NET', 'Content-Length': '425'} 
+ body=&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;&lt;soap:Body&gt;&lt;FahrenheitToCelsiusResponse xmlns="https://www.w3schools.com/xml/"&gt;&lt;FahrenheitToCelsiusResult&gt;100&lt;/FahrenheitToCelsiusResult&gt;&lt;/FahrenheitToCelsiusResponse&gt;&lt;/soap:Body&gt;&lt;/soap:Envelope&gt; 
+ </msg>
+<msg time="2024-10-28T15:53:03.185026" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg time="2024-10-28T15:53:03.185026" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>url=${W3SCHOOLS_URL_BASE}/${W3SCHOOLS_URI_TEMPCONVERTER}</arg>
+<arg>headers=${headers}</arg>
+<arg>data=${data}</arg>
+<arg>expected_status=${expected_status}</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2024-10-28T15:53:02.519852" elapsed="0.665174"/>
+</kw>
+<kw name="Set Test Variable" owner="BuiltIn">
+<msg time="2024-10-28T15:53:03.185026" level="TRACE">Arguments: [ '${response}' ]</msg>
+<msg time="2024-10-28T15:53:03.185026" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<msg time="2024-10-28T15:53:03.185026" level="TRACE">Return: None</msg>
+<arg>${response}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="PASS" start="2024-10-28T15:53:03.185026" elapsed="0.000000"/>
+</kw>
+<msg time="2024-10-28T15:53:03.186025" level="TRACE">Return: None</msg>
+<arg>fahrenheit_value=212</arg>
+<status status="PASS" start="2024-10-28T15:53:02.519852" elapsed="0.666173"/>
+</kw>
+<kw name="Assert TempConverter" owner="tempConvert">
+<msg time="2024-10-28T15:53:03.186388" level="TRACE">Arguments: [ ${celsius_result}='100' | ${fahrenheit_result}=None ]</msg>
+<kw name="Parse Xml" owner="XML">
+<msg time="2024-10-28T15:53:03.186388" level="TRACE">Arguments: [ b'&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;&lt;soap:Body&gt;&lt;FahrenheitToCelsiusResponse xmlns="https://www.w3schools.com/xml/"&gt;&lt;FahrenheitToCelsiusResult&gt;100&lt;/FahrenheitToCelsiusResult&gt;&lt;/FahrenheitToCelsiusResponse&gt;&lt;/soap:Body&gt;&lt;/soap:Envelope&gt;' ]</msg>
+<msg time="2024-10-28T15:53:03.187425" level="TRACE">Return: &lt;Element 'Envelope' at 0x00000266C6C8D990&gt;</msg>
+<msg time="2024-10-28T15:53:03.187425" level="INFO">${root} = &lt;Element 'Envelope' at 0x00000266C6C8D990&gt;</msg>
+<var>${root}</var>
+<arg>${response.content}</arg>
+<doc>Parses the given XML file or string into an element structure.</doc>
+<status status="PASS" start="2024-10-28T15:53:03.186388" elapsed="0.001037"/>
+</kw>
+<if>
+<branch type="IF" condition="${celsius_result}">
+<kw name="Element Text Should Be" owner="XML">
+<msg time="2024-10-28T15:53:03.187425" level="TRACE">Arguments: [ &lt;Element 'Envelope' at 0x00000266C6C8D990&gt; | '100' | xpath='.//FahrenheitToCelsiusResult' ]</msg>
+<msg time="2024-10-28T15:53:03.187425" level="TRACE">Return: None</msg>
+<arg>${root}</arg>
+<arg>${celsius_result}</arg>
+<arg>xpath=.//FahrenheitToCelsiusResult</arg>
+<doc>Verifies that the text of the specified element is ``expected``.</doc>
+<status status="PASS" start="2024-10-28T15:53:03.187425" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-10-28T15:53:03.187425" elapsed="0.000000"/>
+</branch>
+<branch type="ELSE IF" condition="${fahrenheit_result}">
+<kw name="Element Text Should Be" owner="XML">
+<arg>${root}</arg>
+<arg>${fahrenheit_result}</arg>
+<arg>xpath=.//CelsiusToFahrenheitResult</arg>
+<doc>Verifies that the text of the specified element is ``expected``.</doc>
+<status status="NOT RUN" start="2024-10-28T15:53:03.187425" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-10-28T15:53:03.187425" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2024-10-28T15:53:03.187425" elapsed="0.000000"/>
+</if>
+<msg time="2024-10-28T15:53:03.187425" level="TRACE">Return: None</msg>
+<arg>celsius_result=100</arg>
+<status status="PASS" start="2024-10-28T15:53:03.186388" elapsed="0.001037"/>
+</kw>
+<status status="PASS" start="2024-10-28T15:53:02.519852" elapsed="0.668588"/>
+</test>
+<status status="PASS" start="2024-10-28T15:53:01.457342" elapsed="1.731098"/>
+</suite>
+<status status="PASS" start="2024-10-28T15:53:01.456340" elapsed="1.733107"/>
+</suite>
+<status status="PASS" start="2024-10-28T15:53:01.454340" elapsed="1.735107"/>
+</suite>
+<status status="PASS" start="2024-10-28T15:53:01.425280" elapsed="1.765159"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" skip="0" id="s1" name="Robot env">Robot env</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s1" name="RF XML">Robot env.RF XML</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s1-s1" name="Test">Robot env.RF XML.Test</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s1-s1-s1" name="tempConverter">Robot env.RF XML.Test.tempConverter</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
